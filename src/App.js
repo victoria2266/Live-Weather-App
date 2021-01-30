@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import './App.css';
 import Weathervideo from "./video/weathervideo.mp4"
 
-const api = {
-  key: "98e193595faf010315e7b901d60d1b5a",
-  base: "https://api.openweathermap.org/data/2.5/"
-}
+// const api = {
+//   key: "98e193595faf01031xxxxxxx",
+//   base: "https://api.openweathermap.org/data/2.5/"
+// }
 
 function App() {
-
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
   const [title, setTitle] = useState('Live Weather App');
@@ -17,7 +16,8 @@ function App() {
 
   const search = evt => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      // fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${process.env.REACT_APP_API_BASE}weather?q=${query}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`)
         .then(res => res.json())
         .then(result => {
           setWeather(result);
@@ -69,7 +69,6 @@ function App() {
           </div>
         ) : ('')}
       </div>
-
 
       <input
         type="text"
